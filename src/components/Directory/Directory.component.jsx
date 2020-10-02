@@ -42,6 +42,9 @@ class Directory extends React.Component {
       ]
     }
   }
+  componentDidUpdate() {
+    console.log('mount')
+  }
   render() {
     return (
       <div className="directory-menu">
