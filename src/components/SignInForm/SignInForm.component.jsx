@@ -51,7 +51,10 @@ class SignInForm extends React.Component {
             justifyContent: 'space-between'
           }}>
             <Button name="submit" type="submit" value="submit form">submit</Button>
-            <Button onClick={signInWithGoogle}>google</Button>
+            <Button 
+              onClick={signInWithGoogle} 
+              isGoggleSignIn
+            >google</Button>
           </div>
         </form>
       </div>
