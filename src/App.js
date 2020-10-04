@@ -6,6 +6,7 @@ import SignInPage from './pages/SignInPage/';
 import './App.css';
 import Header from './components/Header/';
 import {auth} from './config/firebase.config';
+import createUserProfileDocument from './shared/services/Firebase.service.js';
 
 class App extends React.Component {
   constructor() {
@@ -18,12 +19,24 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth= auth.onAuthStateChanged((user) => {
-      this.setState({currentUser:user});
-      console.log(user)
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userRef = await createUserProfileDocument.createUserProfileDocument(user);
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          })
+          console.log(this.state);
+        });
+      } else {
+        this.setState({currentUser: user}, () => {console.log(this.state)});
+      }
     })
   }
-
+ 
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
@@ -42,5 +55,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
