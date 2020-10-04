@@ -1,4 +1,3 @@
-import axios from 'axios';
 import {fireStore} from '../../config/firebase.config.js';
 import {auth} from '../../config/firebase.config.js';
 class FirebaseRequests {
@@ -28,6 +27,14 @@ class FirebaseRequests {
   }
   signUp = () => {
 
+  }
+  signIn = async (email, password) => {
+    console.log(password);
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
 
