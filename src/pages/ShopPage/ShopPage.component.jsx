@@ -19,14 +19,6 @@ class ShopPage extends React.Component {
             <PreviewCollection key={id} {...props}/>
           ))
         }
-        <button onClick={()=>{
-          this.setState(prevState =>{
-            return{
-                 ...prevState,
-                 counter : prevState.counter +1
-            }
-          })
-        }}>{this.state.counter}</button>
       </div>
     )
   }
