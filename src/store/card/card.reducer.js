@@ -1,6 +1,9 @@
 import * as cardTypes from './card.types';
+import {addMultipleItemsToCard} from './card.helpers';
+
 const INITIAL_STATE = {
-  hidden: true
+  hidden: true,
+  cardItems: []
 }
 const cardReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -8,6 +11,11 @@ const cardReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         hidden: !state.hidden
+      }
+    case(cardTypes.ADD_ITEM):
+      return {
+        ...state,
+        cardItems: addMultipleItemsToCard(state.cardItems, action.payload)
       }
     default:
       return state;
