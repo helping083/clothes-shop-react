@@ -3,7 +3,6 @@ import CollectionItem from '../CollectionItem/';
 import './collection-preview.styles.scss';
 
 const PreviewCollection = memo(({title, items}) => {
-  console.log('render preview collection')
   return (
     <div className="collection-preview">
       <h1 className="titke">{title.toUpperCase()}</h1>
