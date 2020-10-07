@@ -29,7 +29,6 @@ class FirebaseRequests {
 
   }
   signIn = async (email, password) => {
-    console.log(password);
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
