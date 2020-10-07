@@ -1,9 +1,9 @@
 import {createSelector} from 'reselect';
 
-const selectCard = state => state.user;
+const selectcart = state => state.user;
 
 
 export const selectCurrentUser = createSelector(
-  [selectCard],
+  [selectcart],
   (user) => user.currentUser
 )
