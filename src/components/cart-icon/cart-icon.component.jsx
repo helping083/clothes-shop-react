@@ -7,7 +7,6 @@ import {createStructuredSelector} from 'reselect';
 import {ReactComponent as ShoppingIcon} from '../../global/shopping-bag.svg';
 
 const cartIcon = ({toggleCardHidden, itemCount}) => {
-  console.log('render cart icon')
   return(
   <div className='cart-icon' onClick={toggleCardHidden}>
     <ShoppingIcon className="shopping-icon"/>

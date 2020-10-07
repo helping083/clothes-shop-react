@@ -17,6 +17,11 @@ const cardReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cardItems: addMultipleItemsToCard(state.cardItems, action.payload)
       }
+    case(cardTypes.CLOSE_CARD):
+      return {
+        ...state,
+        hidden: true
+      }
     default:
       return state;
   }

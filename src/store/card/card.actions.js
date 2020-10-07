@@ -7,3 +7,7 @@ export const addItemToCard = item => ({
   type: cardTypes.ADD_ITEM,
   payload: item
 })
+
+export const closeCard = () => ({
+  type: cardTypes.CLOSE_CARD
+})
