@@ -8,7 +8,10 @@ import {connect} from 'react-redux';
 import Header from './components/Header/';
 import {auth} from './config/firebase.config';
 import createUserProfileDocument from './shared/services/Firebase.service.js';
+import {selectCurrentUser} from './store/user/user.selectors';
+import {createStructuredSelector} from 'reselect';
 import {setCurrentUser} from './store/user/user.actions';
+import CheckoutPage from './pages/Checkout';
 
 class App extends React.Component {
 
@@ -39,7 +42,8 @@ class App extends React.Component {
       <div className='App'>
         <Header/>
         <Switch>
-          <Route path='/shop'   component={ShopPage}/>
+          <Route path='/shop' component={ShopPage}/>
+          <Route exact path='/checkout' component={CheckoutPage}/>
           <Route exact path='/auth'>
             {this.props.currentUser ? <Redirect to='/'/>: <SignInPage/>}
           </Route>
@@ -51,8 +55,8 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
 })  
 
 const mapDispatchToProps = dispatch => ({

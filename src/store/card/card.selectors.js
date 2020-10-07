@@ -7,7 +7,12 @@ export const selectCardItems = createSelector(
   card => card.cardItems
 )
 
+export const selectCardHidden = createSelector(
+  [selectCard],
+  card => card.hidden
+)
+
 export const selectCartItemsCount = createSelector(
   [selectCardItems],
-  cardItems =>cardItems.reduce((prev, curr) => prev + curr.quantity, 0)
+  cardItems => cardItems.reduce((prev, curr) => prev + curr.quantity, 0)
 )
