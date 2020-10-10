@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-const ShopPage = ({match, updateCollections}) => {
+const ShopPage = ({match,  updateCollections}) => {
   const [loading, setLoading] = useState(true);
   let unsubscribeFromSnapshot = null;
 
@@ -22,7 +22,7 @@ const ShopPage = ({match, updateCollections}) => {
       updateCollections(collectionsMap);
       setLoading(false);
     })
-  },[]);
+  },[updateCollections, match]);
 
   return (
     <div className="shopPage">
