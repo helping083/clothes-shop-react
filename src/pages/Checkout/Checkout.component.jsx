@@ -43,14 +43,15 @@ class Checkout extends Component {
         <div className='total'>
           <span>TOTAL: ${total}</span>
         </div>
-        <div className="test-warning">
+        {/*todo: find a better way to hide those*/}
+        {cartItems.length > 0 && <div className="test-warning">
           *Please use the following test credit card for payment
           <br/>
           4242 4242 4242 4242
           <br/>
           Exp: 01/22 - CVV: 123
-        </div>
-        <StripeButton price={total}/>
+        </div>}
+        {cartItems.length > 0 && <StripeButton price={total} isDisabled={cartItems.length > 0}/>}
       </div>
     )
   }

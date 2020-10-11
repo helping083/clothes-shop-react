@@ -1,3 +1,3 @@
-import collectionOverview from './collections-overview.component.jsx';
+import CollectionsOverviewContainer from './collections-overview.container';
 
-export default collectionOverview;
+export default CollectionsOverviewContainer;

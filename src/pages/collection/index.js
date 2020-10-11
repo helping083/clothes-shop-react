@@ -1,3 +1,3 @@
-import CollectionPage from './collection.component.jsx';
+import CollectionPageContainer from './collection.container.jsx';
 
-export default CollectionPage;
+export default CollectionPageContainer;
