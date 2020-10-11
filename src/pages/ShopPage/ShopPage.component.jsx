@@ -22,7 +22,7 @@ const ShopPage = ({match,  updateCollections}) => {
       updateCollections(collectionsMap);
       setLoading(false);
     })
-  },[updateCollections, match]);
+  },[]);
 
   return (
     <div className="shopPage">
