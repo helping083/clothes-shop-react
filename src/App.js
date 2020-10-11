@@ -7,7 +7,7 @@ import './App.css';
 import {connect} from 'react-redux';
 import Header from './components/Header/';
 import {auth} from './config/firebase.config';
-import createUserProfileDocument, {addCollectionAndDocuments} from './shared/services/Firebase.service.js';
+import createUserProfileDocument from './shared/services/Firebase.service.js';
 import {selectCurrentUser} from './store/user/user.selectors';
 import {createStructuredSelector} from 'reselect';
 import {setCurrentUser} from './store/user/user.actions';
