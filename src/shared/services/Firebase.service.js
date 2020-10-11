@@ -25,9 +25,11 @@ class FirebaseRequests {
   
     return userRef;
   }
+
   signUp = () => {
 
   }
+
   signIn = async (email, password) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
@@ -35,6 +37,37 @@ class FirebaseRequests {
       throw new Error(error);
     }
   }
+}
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  try {
+    const collectionRef = fireStore.collection(collectionKey);
+    const batch = fireStore.batch();
+    objectsToAdd.forEach((obj, index) =>{
+      const newDocRef = collectionRef.doc()
+      batch.set(newDocRef, obj);
+    })
+    return await batch.commit();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollections = collections.docs.map(doc => {
+    const {title, items} = doc.data();
+
+    return {
+      routeName: encodeURI(title),
+      id: doc.id,
+      title,
+      items
+    }
+  });
+  return transformedCollections.reduce((acc, collection) => {
+    acc[collection.title.toLowerCase()] = collection;
+    return acc
+  },{})
 }
 
 export default new FirebaseRequests();
