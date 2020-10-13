@@ -6,36 +6,11 @@ import SignInPage from './pages/SignInPage/';
 import './App.css';
 import {connect} from 'react-redux';
 import Header from './components/Header/';
-import {auth} from './config/firebase.config';
 import {selectCurrentUser} from './store/user/user.selectors';
 import {createStructuredSelector} from 'reselect';
-import {setCurrentUser} from './store/user/user.actions';
 import CheckoutPage from './pages/Checkout';
 
 class App extends React.Component {
-
-  unsubscribeFromAuth = null;
-
-  componentDidMount() {
-    const {setCurrentUser} = this.props;
-    // this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-    //   if (user) {
-    //     const userRef = await createUserProfileDocument.createUserProfileDocument(user);
-    //     userRef.onSnapshot((snapShot) => {
-    //       setCurrentUser({
-    //         id: snapShot.id,
-    //         ...snapShot.data()
-    //       })
-    //     });
-    //   } 
-    //   setCurrentUser(user);
-    // })
-  }
- 
-  componentWillUnmount() {
-    // this.unsubscribeFromAuth();
-  }
-
   render() {
     return (
       <div className='App'>
@@ -58,8 +33,4 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 })  
 
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

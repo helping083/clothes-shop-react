@@ -1,12 +1,10 @@
 import React from 'react';
 import FormInput from '../FormInput/';
 import './signIn.styles.scss';
-import { signInWithGoogle } from '../../config/firebase.config';
 import Button from '../button/';
 import {connect} from 'react-redux'
-import firebaseService from '../../shared/services/Firebase.service.js';
 // todo: make an auth factory for different firebase auth actions
-import {googleSignInStart} from '../../store/user/user.actions';
+import {googleSignInStart, emailSignInStart} from '../../store/user/user.actions';
 
 class SignInForm extends React.Component {
   constructor(props) {
@@ -19,13 +17,15 @@ class SignInForm extends React.Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    const {emailSignInStart} = this.props;
     const {email, password} = this.state;
-    try {
-      await firebaseService.signIn(email, password);
-      this.setState({email: '', password: ''})
-    } catch (error) {
-      console.error(error);
-    }
+    emailSignInStart({email, password})
+    // try {
+    //   await firebaseService.signIn(email, password);
+    //   this.setState({email: '', password: ''})
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   handleChange = (e) => {
@@ -80,6 +80,7 @@ class SignInForm extends React.Component {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  googleSignInStart: () => dispatch(googleSignInStart())
+  googleSignInStart: () => dispatch(googleSignInStart()),
+  emailSignInStart: (email, password) => dispatch(emailSignInStart(email, password))
 })
 export default connect(null, mapDispatchToProps)(SignInForm);
