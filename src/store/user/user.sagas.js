@@ -19,6 +19,16 @@ export function* getSnapshotFromFirebase(userAuth) {
   }
 }
 
+export function* isUserAuth() {
+  try {
+    const userAuth = yield firebaseService.getCurrentUser();
+    if (!userAuth) return;
+    yield getSnapshotFromFirebase(userAuth)
+  } catch (error) {
+    yield put(SignInError(error))
+  }
+}
+
 export function* signInWithEmail({payload: {email, password}}) {
   try {
     const {user} = yield auth.signInWithEmailAndPassword(email,password);
@@ -46,6 +56,10 @@ export function* onEmailSignInStart() {
   yield takeLatest(UserActions.EMAIL_SIGN_IN_START, signInWithEmail)
 }
 
+export function* onCheckUserSession() {
+  yield takeLatest(UserActions.CHECK_USER_SESSION, isUserAuth)
+}
+
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart)])
+  yield all([call(onGoogleSignInStart), call(onEmailSignInStart), call(isUserAuth)])
 }

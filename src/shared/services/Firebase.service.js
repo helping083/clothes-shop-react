@@ -37,6 +37,15 @@ class FirebaseRequests {
       throw new Error(error);
     }
   }
+
+  getCurrentUser = () => {
+    return new Promise((res,rej) => {
+      const unsubscribe = auth.onAuthStateChanged( userAuth => {
+        unsubscribe();
+        res(userAuth);
+      }, rej)
+    })
+  }
 }
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
