@@ -31,6 +31,13 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           cartItem => cartItem.id !== action.payload.id
         )
       }
+    //todo: remove parenthesis from case
+    case cartTypes.CLEAR_CART:
+      return {
+        ...state,
+        cartItems: []
+      }
+    // todo: fix cart lowercase
     case(cartTypes.CLOSE_cart):
       return {
         ...state,
