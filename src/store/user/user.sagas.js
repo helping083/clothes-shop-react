@@ -43,7 +43,7 @@ export function* signOut() {
 export function* signInWithEmail({payload: {email, password}}) {
   try {
     const {user} = yield auth.signInWithEmailAndPassword(email,password);
-    getSnapshotFromFirebase(user);
+    yield getSnapshotFromFirebase(user);
   } catch (error) {
     yield put(SignInError(error))
   }
@@ -52,7 +52,7 @@ export function* signInWithEmail({payload: {email, password}}) {
 export function* signInWithGoogle() {
   try {
     const {user} = yield auth.signInWithPopup(googleProvider);
-    getSnapshotFromFirebase(user);
+    yield getSnapshotFromFirebase(user);
   } catch (error) {
     yield put(SignInError(error));
     console.log(error)
