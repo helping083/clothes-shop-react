@@ -5,6 +5,8 @@ import firebaseService from '../../shared/services/Firebase.service';
 import {
   SignInSuccess, 
   SignInError, 
+  signOutSuccess,
+  signOutFailure
 } from './user.actions';
 
 // todo: auth actions into an auth service
@@ -26,6 +28,15 @@ export function* isUserAuth() {
     yield getSnapshotFromFirebase(userAuth)
   } catch (error) {
     yield put(SignInError(error))
+  }
+}
+
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield put(signOutSuccess())
+  } catch (error) {
+    yield put(signOutFailure(error))
   }
 }
 
@@ -60,6 +71,15 @@ export function* onCheckUserSession() {
   yield takeLatest(UserActions.CHECK_USER_SESSION, isUserAuth)
 }
 
+export function* onSignOutStart() {
+  yield takeLatest(UserActions.SIGN_OUT_START, signOut)
+}
+
 export function* userSagas() {
-  yield all([call(onGoogleSignInStart), call(onEmailSignInStart), call(isUserAuth)])
+  yield all([
+    call(onGoogleSignInStart), 
+    call(onEmailSignInStart), 
+    call(isUserAuth),
+    call(onSignOutStart)
+  ])
 }
