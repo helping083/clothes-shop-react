@@ -10,7 +10,7 @@ import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
 import CheckoutPage from './pages/Checkout';
-
+// todo: uuid
 class App extends React.Component {
   componentDidMount() {
     const { checkUserSession } = this.props;
