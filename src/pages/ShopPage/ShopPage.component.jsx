@@ -8,8 +8,7 @@ import {fetchCollectionsStart} from '../../store/shop/shop.actions';
 const ShopPage = ({match, fetchCollectionsStart}) => {
   useEffect(() => {
     fetchCollectionsStart()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[]);
+  },[fetchCollectionsStart]);
 
   return (
     <div className="shopPage">

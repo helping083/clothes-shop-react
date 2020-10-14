@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormInput from '../FormInput/';
 import './signIn.styles.scss';
 import Button from '../button/';
@@ -6,43 +6,30 @@ import {connect} from 'react-redux'
 // todo: make an auth factory for different firebase auth actions
 import {googleSignInStart, emailSignInStart} from '../../store/user/user.actions';
 
-class SignInForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: ''
-    }
-  }
+const SignInForm = ({emailSignInStart, googleSignInStart}) => {
+  const [userCredentials, setCredentials] = useState({email:'', password:''});
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const {emailSignInStart} = this.props;
-    const {email, password} = this.state;
+    const {email, password} = userCredentials;
     emailSignInStart({email, password})
-    // try {
-    //   await firebaseService.signIn(email, password);
-    //   this.setState({email: '', password: ''})
-    // } catch (error) {
-    //   console.error(error);
-    // }
   }
 
-  handleChange = (e) => {
+  const handleChange = (e) => {
     const {value, name} = e.target;
-    this.setState({[name]: value});
+    setCredentials({...userCredentials, [name]: value});
   }
 
-  renderForm = () => {
-    const {googleSignInStart} = this.props
+  const renderForm = () => {
+    const {email, password} = userCredentials
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormInput
           name="email" 
           type="email" 
           label="email"
-          value={this.state.email}
-          handleChange={this.handleChange}
+          value={email}
+          handleChange={handleChange}
           required
         />
 
@@ -50,8 +37,8 @@ class SignInForm extends React.Component {
           name="password" 
           type="password"
           label="password"
-          handleChange={this.handleChange}
-          value={this.state.password} 
+          handleChange={handleChange}
+          value={password} 
           required
         />
         <div style={{
@@ -68,19 +55,18 @@ class SignInForm extends React.Component {
       </form>
     )
   }
-
-  render() {
     return (
       <div className="sign-in">
         <h2 className="title">I already have an account</h2>
         <span>sign in with your email and password</span>
-        {this.renderForm()}
+        {renderForm()}
       </div>
     )
-  }
 }
+
 const mapDispatchToProps = dispatch => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
   emailSignInStart: (email, password) => dispatch(emailSignInStart(email, password))
 })
+
 export default connect(null, mapDispatchToProps)(SignInForm);
