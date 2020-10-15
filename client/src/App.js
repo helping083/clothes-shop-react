@@ -10,9 +10,13 @@ import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
 import CheckoutPage from './pages/Checkout';
+import axios from 'axios'
 // todo: uuid
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(()=>{
+    axios.get('ping')
+      .then(data => console.log('ping', data))
+      .catch(err => console.log(err));
     checkUserSession()
   },[checkUserSession])
   

@@ -1,7 +1,9 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-
+//todo: make auth into server
+//todo: make google auth into our own server
+//todo: make facebook and github auth
 const firebaseConfig = {
     apiKey: "AIzaSyDB-8RJiLIRChfSl8f2lfqvobEv6KxL3T4",
     authDomain: "react-clothes-db-17250.firebaseapp.com",
