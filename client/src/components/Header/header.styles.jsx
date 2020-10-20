@@ -7,12 +7,17 @@ const OptionContainerStyle = css`
 `
 
 export const HeaderContainer = styled.div`
-  height: 70px;
+  height: 80px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
-  padding: 0px 80px;
+  padding: 10px 80px;
+  max-width: 1600px;
+  margin: 0 auto;
+  @media screen and (max-width: 992px) {
+    padding: 10px 60px;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
