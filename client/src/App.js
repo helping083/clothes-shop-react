@@ -10,7 +10,8 @@ import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
 import CheckoutPage from './pages/Checkout';
-import axios from 'axios'
+import axios from 'axios';
+import {GlobalStyles} from './global.styles';
 // todo: uuid
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(()=>{
@@ -22,6 +23,7 @@ const App = ({ checkUserSession, currentUser }) => {
   
   return (
     <div className='App'>
+      <GlobalStyles/>
       <Header/>
       <Switch>
         <Route path='/shop' component={ShopPage}/>
