@@ -3,7 +3,12 @@ import './collection-item.styles.scss';
 import Button from '../button/';
 import {connect} from 'react-redux';
 import {addItemTocart} from '../../store/cart/cart.actions';
-
+/**
+ * todo:
+ *  & .collection-item {
+      margin-bottom: 30px;
+    } 
+ */
 const CollectionItem = ({item, addItem}) => {
   const {name, price, imageUrl,} = item;
   return (

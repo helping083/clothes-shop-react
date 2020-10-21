@@ -1,14 +1,13 @@
 import React from 'react'
 import SignInForm from '../../components/SignInForm/';
 import SignUpForm from '../../components//SignUpForm/';
-
-import './signIn.styles.scss';
+import {SignInContainer} from './signIn.styles';
 const  SignInPage = () => {
   return (
-    <div className='sign-in-and-sign-up'>
+    <SignInContainer>
       <SignInForm/>
       <SignUpForm/>
-    </div>
+    </SignInContainer>
   )
 }
 
