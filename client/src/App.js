@@ -13,6 +13,7 @@ import CheckoutPage from './pages/Checkout';
 import axios from 'axios';
 import {GlobalStyles} from './global.styles';
 // todo: uuid
+// todo: propTypes
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(()=>{
     axios.get('ping')
