@@ -18,7 +18,9 @@ const CollectionPage = ({collection, match}) => {
       <TitleH2>{title}</TitleH2>
       <ItemsContainer>
         {
-          items.map(item => <CollectionItem key={item.id} item={item}/>)
+          items.map(
+            item => <CollectionItem key={item.id} item={item} className="collectionItem"/>
+          )
         }
       </ItemsContainer>
     </CollectionPageDiv>

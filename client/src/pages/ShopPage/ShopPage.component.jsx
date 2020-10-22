@@ -4,6 +4,7 @@ import CollectionPageContainer from '../collection/';
 import CollectionOverview from '../../components/collections-overview';
 import { connect } from 'react-redux';
 import {fetchCollectionsStart} from '../../store/shop/shop.actions';
+import {ShopPageContainer} from './shopPage.styles';
 // todo: create pages folder into shop module and put collection
 const ShopPage = ({match, fetchCollectionsStart}) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const ShopPage = ({match, fetchCollectionsStart}) => {
   },[fetchCollectionsStart]);
 
   return (
-    <div className="shopPage">
+    <ShopPageContainer>
       <Route 
         exact 
         path={`${match.path}`} 
@@ -21,7 +22,7 @@ const ShopPage = ({match, fetchCollectionsStart}) => {
         path={`${match.path}/:categoryId`} 
         component={CollectionPageContainer}
       />
-    </div>
+    </ShopPageContainer>
   );
 }
 

@@ -1,11 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import SignUpForm from '../../components//SignUpForm/';
 
 const SignUpPage = () => {
   return (
-    <Fragment>
+    <div        
+      style={{
+      display: 'flex',
+      justifyContent: 'center'
+      }}
+    >
       <SignUpForm/>
-    </Fragment>
+    </div>
   )
 }
 

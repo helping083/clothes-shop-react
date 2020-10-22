@@ -18,7 +18,7 @@ import {
 const CollectionItem = ({item, addItem}) => {
   const {name, price, imageUrl,} = item;
   return (
-    <CollectionItemContainer>
+    <CollectionItemContainer className="collectionItem">
       <BackgroundImage className='image' imageUrl={imageUrl} />
       <CollectionFooterContainer>
         <NameContainer>{name}</NameContainer>

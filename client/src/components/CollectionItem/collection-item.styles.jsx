@@ -8,6 +8,7 @@ export const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
+  max-width: 390px;
   &:hover {
     .image {
       opacity: 0.8;
@@ -29,6 +30,7 @@ export const AddButton = styled(CustomButton)`
 
 export const BackgroundImage = styled.div`
   width: 100%;
+  max-width: 100%;
   height: 95%;
   background-size: cover;
   background-position: center;

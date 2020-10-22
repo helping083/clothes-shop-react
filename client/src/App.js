@@ -17,7 +17,7 @@ import {GlobalStyles} from './global.styles';
 // todo: propTypes
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(()=>{
-    axios.get('ping')
+    axios.get('/ping')
       .then(data => console.log('ping', data))
       .catch(err => console.log(err));
     checkUserSession()
