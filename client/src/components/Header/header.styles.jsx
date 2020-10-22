@@ -5,7 +5,11 @@ const OptionContainerStyle = css`
   padding: 10px 15px;
   cursor: pointer;
 `
-
+const hiddenOnMobile = css`
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
 export const HeaderContainer = styled.div`
   height: 80px;
   width: 100%;
@@ -24,6 +28,7 @@ export const LogoContainer = styled(Link)`
   height: 100%;
   width: 70px;
   padding: 10px;
+  ${hiddenOnMobile}
 `;
 
 export const OptionsContainer = styled.div`
@@ -36,8 +41,10 @@ export const OptionsContainer = styled.div`
 
 export const OptionLink = styled(Link)`
   ${OptionContainerStyle}
+  ${hiddenOnMobile}
 `
 
 export const OptionDiv = styled.div`
   ${OptionContainerStyle}
+  ${hiddenOnMobile}
 `

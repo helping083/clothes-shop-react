@@ -4,7 +4,7 @@ import CollectionPageContainer from '../collection/';
 import CollectionOverview from '../../components/collections-overview';
 import { connect } from 'react-redux';
 import {fetchCollectionsStart} from '../../store/shop/shop.actions';
-
+// todo: create pages folder into shop module and put collection
 const ShopPage = ({match, fetchCollectionsStart}) => {
   useEffect(() => {
     fetchCollectionsStart()
