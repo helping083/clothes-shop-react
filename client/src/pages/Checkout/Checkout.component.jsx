@@ -4,46 +4,64 @@ import {createStructuredSelector} from 'reselect';
 import CheckoutItem from '../../components/checkoutItem/';
 import {selectcartItems, selectcartTotal} from '../../store/cart/cart.selectors';
 import StripeButton from '../../components/stripe-button/';
-import './checkout.styles.scss';
+import {
+  CheckoutPageContainer, 
+  CheckoutHeaderContainer, 
+  HeaderBlockContainer,
+  TotalBlock,
+  WarningDiv
+} from './checkout.styles';
 
 const Checkout = ({cartItems, total}) => {
   return (
-    <div className='checkout-page'>
-      <div className='checkout-header'>
-        <div className="header-block">
+    <CheckoutPageContainer>
+      <CheckoutHeaderContainer>
+        <HeaderBlockContainer>
           <span>Product</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Description</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Quantity</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Price</span>
-        </div>
-        <div className="header-block">
+        </HeaderBlockContainer>
+        <HeaderBlockContainer>
           <span>Remove</span>
-        </div>
-      </div>
+        </HeaderBlockContainer>
+      </CheckoutHeaderContainer>
       {
         cartItems.map(cartItem => 
           <CheckoutItem key={cartItem.id} cartItem={cartItem}/>
         )
       }
-      <div className='total'>
+      <TotalBlock>
         <span>TOTAL: ${total}</span>
-      </div>
+      </TotalBlock>
       {/*todo: find a better way to hide those*/}
-      {cartItems.length > 0 && <div className="test-warning">
+      {cartItems.length > 0 && <WarningDiv>
         *Please use the following test credit card for payment
         <br/>
         4242 4242 4242 4242
         <br/>
         Exp: 01/22 - CVV: 123
-      </div>}
-      {cartItems.length > 0 && <StripeButton price={total} isDisabled={cartItems.length > 0}/>}
-    </div>
+      </WarningDiv>}
+      { 
+        cartItems.length > 0 &&
+        <div
+          style={{
+            margin: '50px 0px'
+          }}
+        >
+          <StripeButton 
+            price={total} 
+            isDisabled={cartItems.length > 0}
+          />
+        </div> 
+      }
+    </CheckoutPageContainer>
   )
 }
 

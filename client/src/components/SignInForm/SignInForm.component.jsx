@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import FormInput from '../FormInput/';
-import './signIn.styles.scss';
+import {
+  SignInContainer,
+  SignInTitle,
+  ButtonsBarContainer
+} from './signIn.styles';
 import Button from '../button/';
 import {connect} from 'react-redux'
 // todo: make an auth factory for different firebase auth actions
@@ -41,26 +45,23 @@ const SignInForm = ({emailSignInStart, googleSignInStart}) => {
           value={password} 
           required
         />
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between'
-        }}>
+        <ButtonsBarContainer>
           <Button name="submit" type="submit" value="submit form">submit</Button>
           <Button
             type="button" 
             onClick={googleSignInStart} 
             isGoggleSignIn={true}
           >google</Button>
-        </div>
+        </ButtonsBarContainer>
       </form>
     )
   }
     return (
-      <div className="sign-in">
-        <h2 className="title">I already have an account</h2>
+      <SignInContainer>
+        <SignInTitle>I already have an account</SignInTitle>
         <span>sign in with your email and password</span>
         {renderForm()}
-      </div>
+      </SignInContainer>
     )
 }
 

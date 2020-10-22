@@ -1,13 +1,9 @@
-import React  from 'react'
-import './button.styles.scss';
-import {ButtonContainer} from './button.styles';
+import React from 'react';
 
-const Button = ({children, ...props}) => {
-  return (
-    <ButtonContainer {...props}>
-      {children}
-    </ButtonContainer>
-  ) 
-}
+import { CustomButtonContainer } from './button.styles';
 
-export default Button;
+const CustomButton = ({ children, ...props }) => (
+  <CustomButtonContainer {...props}>{children}</CustomButtonContainer>
+);
+
+export default CustomButton;

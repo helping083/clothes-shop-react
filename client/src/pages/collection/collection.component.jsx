@@ -3,19 +3,27 @@ import {connect} from 'react-redux';
 import {selectCollection} from '../../store/shop/shop.selectors';
 import CollectionItem from '../../components/CollectionItem';
 import WithBreadcrumps from '../../components/HOC/WithBreadcrumps/WithBreadcrumps';
-import './collection.styles.scss';
-
+import { CollectionPageDiv, TitleH2, ItemsContainer} from './collection.styles';
+// todo: 
+/**
+ * 
+ *& .collection-item {
+      margin-bottom: 30px;
+    }
+ */
 const CollectionPage = ({collection, match}) => {
   const {title, items} = collection;
   return(
-    <div className='collection-page'>
-      <h2 className='title'>{title}</h2>
-      <div className='items'>
+    <CollectionPageDiv>
+      <TitleH2>{title}</TitleH2>
+      <ItemsContainer>
         {
-          items.map(item => <CollectionItem key={item.id} item={item}/>)
+          items.map(
+            item => <CollectionItem key={item.id} item={item} className="collectionItem"/>
+          )
         }
-      </div>
-    </div>
+      </ItemsContainer>
+    </CollectionPageDiv>
   )
 }
 

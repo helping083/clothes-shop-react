@@ -1,17 +1,20 @@
 import React from 'react'
-import './cart-icon.styles.scss';
 import {connect} from 'react-redux';
 import {togglecartHidden} from '../../store/cart/cart.actions.js';
 import {selectCartItemsCount} from '../../store/cart/cart.selectors.js';
 import {createStructuredSelector} from 'reselect';
-import {ReactComponent as ShoppingIcon} from '../../global/shopping-bag.svg';
+import {
+  CartContainer,
+  ShoppingIcon,
+  ItemCountContainer
+} from './cart-icon.styles';
 
 const cartIcon = ({togglecartHidden, itemCount}) => {
   return(
-  <div className='cart-icon' onClick={togglecartHidden}>
-    <ShoppingIcon className="shopping-icon"/>
-    <span className="item-count">{itemCount}</span>
-  </div>
+  <CartContainer onClick={togglecartHidden}>
+    <ShoppingIcon />
+    <ItemCountContainer>{itemCount}</ItemCountContainer>
+  </CartContainer>
 )}
 
 const mapStateToProps = createStructuredSelector({
