@@ -31,6 +31,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <Header/>
       <Switch>
         <Suspense fallback={<Spinner/>}>
+        <Route exact path='/' component={HomePage}/>
           <Route path='/shop' component={ShopPage}/>
           <Route exact path='/checkout' component={CheckoutPage}/>
           <Route exact path='/auth'>
@@ -39,8 +40,8 @@ const App = ({ checkUserSession, currentUser }) => {
           <Route exact path='/signUp'>
             {currentUser ? <Redirect to='/'/>: <SignUpPage/>}
           </Route>
-          <Route exact path='/' component={HomePage}/>
-          <Redirect to="/"/>
+          
+          <Route render={() => <Redirect to="/" />} />
         </Suspense>
       </Switch>
     </div>
