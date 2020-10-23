@@ -29,9 +29,8 @@ const App = ({ checkUserSession, currentUser }) => {
     <div className='App'>
       <GlobalStyles/>
       <Header/>
-      <Switch>
-        <Suspense fallback={<Spinner/>}>
-        <Route exact path='/' component={HomePage}/>
+      <Suspense fallback={<Spinner/>}>
+        <Switch>
           <Route path='/shop' component={ShopPage}/>
           <Route exact path='/checkout' component={CheckoutPage}/>
           <Route exact path='/auth'>
@@ -40,10 +39,10 @@ const App = ({ checkUserSession, currentUser }) => {
           <Route exact path='/signUp'>
             {currentUser ? <Redirect to='/'/>: <SignUpPage/>}
           </Route>
-          
-          <Route render={() => <Redirect to="/" />} />
-        </Suspense>
-      </Switch>
+          <Route exact path='/' component={HomePage}/>
+          <Redirect to="/" />
+        </Switch>
+      </Suspense>
     </div>
   );
 }
