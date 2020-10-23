@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import './App.css';
 import {connect} from 'react-redux';
 import Header from './components/Header/';
+import Spinner from './components/spinner/'
 import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
@@ -29,7 +30,7 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyles/>
       <Header/>
       <Switch>
-        <Suspense fallback={<div>...loading</div>}>
+        <Suspense fallback={<Spinner/>}>
           <Route path='/shop' component={ShopPage}/>
           <Route exact path='/checkout' component={CheckoutPage}/>
           <Route exact path='/auth'>
