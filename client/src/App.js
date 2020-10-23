@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, Suspense, lazy} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
-import HomePage from './pages/Homepage/';
-import ShopPage from './pages/ShopPage/';
-import SignInPage from './pages/SignInPage/';
-import SignUpPage from './pages/SignUpPage';
 import './App.css';
 import {connect} from 'react-redux';
 import Header from './components/Header/';
 import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
-import CheckoutPage from './pages/Checkout';
 import axios from 'axios';
 import {GlobalStyles} from './global.styles';
+
+const HomePage = lazy(()=> import('./pages/Homepage/'))
+const ShopPage = lazy(() => import('./pages/ShopPage/'));
+const CheckoutPage = lazy(() => import('./pages/Checkout'))
+const SignInPage = lazy(() => import('./pages/SignInPage/'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'))
 // todo: uuid
 // todo: propTypes
 const App = ({ checkUserSession, currentUser }) => {
@@ -28,16 +29,18 @@ const App = ({ checkUserSession, currentUser }) => {
       <GlobalStyles/>
       <Header/>
       <Switch>
-        <Route path='/shop' component={ShopPage}/>
-        <Route exact path='/checkout' component={CheckoutPage}/>
-        <Route exact path='/auth'>
-          {currentUser ? <Redirect to='/'/>: <SignInPage/>}
-        </Route>
-        <Route exact path='/signUp'>
-          {currentUser ? <Redirect to='/'/>: <SignUpPage/>}
-        </Route>
-        <Route exact path='/' component={HomePage}/>
-        <Redirect to="/"/>
+        <Suspense fallback={<div>...loading</div>}>
+          <Route path='/shop' component={ShopPage}/>
+          <Route exact path='/checkout' component={CheckoutPage}/>
+          <Route exact path='/auth'>
+            {currentUser ? <Redirect to='/'/>: <SignInPage/>}
+          </Route>
+          <Route exact path='/signUp'>
+            {currentUser ? <Redirect to='/'/>: <SignUpPage/>}
+          </Route>
+          <Route exact path='/' component={HomePage}/>
+          <Redirect to="/"/>
+        </Suspense>
       </Switch>
     </div>
   );
