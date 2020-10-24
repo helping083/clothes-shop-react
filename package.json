@@ -12,12 +12,13 @@
     "stripe": "^8.113.0"
   },
   "scripts": {
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "client": "cd client && npm run start",
     "start-mac": "cd client && yarn start",
     "build": "cd client && npm run build",
+    "lint": "eslint --fix --ext .js,.jsx .",
     "server": "nodemon server.js",
     "start": "node server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,6 +39,18 @@
   },
   "homepage": "https://github.com/helping083/clothes-shop-react#readme",
   "devDependencies": {
-    "nodemon": "^2.0.5"
+    "@typescript-eslint/parser": "^4.5.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.14.0",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.5",
+    "prettier": "^2.1.2"
   }
 }
