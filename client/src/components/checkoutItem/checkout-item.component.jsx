@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -42,7 +42,9 @@ const mapDispatchToProps = dispatch => ({
   removeItem: item => dispatch(removeItem(item))
 });
 
+const memoizedCheckoutItem = memo(CheckoutItem)
+
 export default connect(
   null,
   mapDispatchToProps
-)(CheckoutItem);
+)(memoizedCheckoutItem);
