@@ -5,6 +5,7 @@ import CollectionOverview from '../../components/collections-overview';
 import { connect } from 'react-redux';
 import {fetchCollectionsStart} from '../../store/shop/shop.actions';
 import {ShopPageContainer} from './shopPage.styles';
+import PropTypes from 'prop-types';
 // todo: create pages folder into shop module and put collection
 const ShopPage = ({match, fetchCollectionsStart}) => {
   useEffect(() => {
@@ -29,5 +30,10 @@ const ShopPage = ({match, fetchCollectionsStart}) => {
 const mapDispatchToProps = dispatch =>({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 })
+
+ShopPage.propTypes = {
+  match: PropTypes.object.isRequired,
+  fetchCollectionsStart: PropTypes.func.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(ShopPage);

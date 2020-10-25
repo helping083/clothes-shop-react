@@ -11,6 +11,7 @@ import {
   TotalBlock,
   WarningDiv
 } from './checkout.styles';
+import PropTypes from 'prop-types';
 
 const Checkout = ({cartItems, total}) => {
   const renderStripeButtonAndWarning = () => {
@@ -80,5 +81,10 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectcartItems,
   total: selectcartTotal
 });
+
+Checkout.propTypes = {
+  cartItems: PropTypes.array,
+  total: PropTypes.number.isRequired
+}
 
 export default connect(mapStateToProps,null)(Checkout);

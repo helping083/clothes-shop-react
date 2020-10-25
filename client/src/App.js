@@ -8,6 +8,7 @@ import {selectCurrentUser} from './store/user/user.selectors';
 import {CheckUserSession} from './store/user/user.actions';
 import {createStructuredSelector} from 'reselect';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {GlobalStyles} from './global.styles';
 
 const HomePage = lazy(()=> import('./pages/Homepage/'))
@@ -19,11 +20,12 @@ const SignUpPage = lazy(() => import('./pages/SignUpPage'))
 // todo: propTypes
 const App = ({ checkUserSession, currentUser }) => {
   useEffect(()=>{
+    console.log('cuurent' , currentUser)
     axios.get('/ping')
       .then(data => console.log('ping', data))
       .catch(err => console.log(err));
     checkUserSession()
-  },[checkUserSession])
+  },[checkUserSession, currentUser])
   
   return (
     <div className='App'>
@@ -54,5 +56,10 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(CheckUserSession())
 })
+
+App.propTypes = {
+  currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]),
+  checkUserSession: PropTypes.func.isRequired
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
