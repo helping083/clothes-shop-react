@@ -4,6 +4,7 @@ import {selectCollection} from '../../store/shop/shop.selectors';
 import CollectionItem from '../../components/CollectionItem';
 import WithBreadcrumps from '../../components/HOC/WithBreadcrumps/WithBreadcrumps';
 import { CollectionPageDiv, TitleH2, ItemsContainer} from './collection.styles';
+import PropTypes from 'prop-types';
 // todo: 
 /**
  * 
@@ -12,6 +13,7 @@ import { CollectionPageDiv, TitleH2, ItemsContainer} from './collection.styles';
     }
  */
 const CollectionPage = ({collection, match}) => {
+  console.log(collection)
   const {title, items} = collection;
   return(
     <CollectionPageDiv>
@@ -31,5 +33,9 @@ const mapStateToProps = (state, ownProps) => {
   return{
   collection: selectCollection(ownProps.match.params.categoryId)(state)
 }}
+
+CollectionPage.propTypes = {
+  collection: PropTypes.object,
+}
 
 export default connect(mapStateToProps)(WithBreadcrumps(CollectionPage));

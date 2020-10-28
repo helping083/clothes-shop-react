@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import CheckoutItem from '../../components/checkoutItem/';
@@ -11,8 +11,39 @@ import {
   TotalBlock,
   WarningDiv
 } from './checkout.styles';
+import PropTypes from 'prop-types';
 
 const Checkout = ({cartItems, total}) => {
+  const renderStripeButtonAndWarning = () => {
+    return (
+      <>
+        {
+          cartItems.length > 0 ?
+            <Fragment>
+              <WarningDiv>
+                *Please use the following test credit card for payment
+                <br/>
+                4242 4242 4242 4242
+                <br/>
+                Exp: 01/22 - CVV: 123
+              </WarningDiv>
+              <div
+                style={{
+                  margin: '50px 0px'
+                }}
+              >
+                <StripeButton 
+                  price={total} 
+                  isDisabled={cartItems.length > 0}
+                />
+              </div> 
+            </Fragment>
+          :null
+        }
+      </>
+    )
+  }
+
   return (
     <CheckoutPageContainer>
       <CheckoutHeaderContainer>
@@ -40,27 +71,7 @@ const Checkout = ({cartItems, total}) => {
       <TotalBlock>
         <span>TOTAL: ${total}</span>
       </TotalBlock>
-      {/*todo: find a better way to hide those*/}
-      {cartItems.length > 0 && <WarningDiv>
-        *Please use the following test credit card for payment
-        <br/>
-        4242 4242 4242 4242
-        <br/>
-        Exp: 01/22 - CVV: 123
-      </WarningDiv>}
-      { 
-        cartItems.length > 0 &&
-        <div
-          style={{
-            margin: '50px 0px'
-          }}
-        >
-          <StripeButton 
-            price={total} 
-            isDisabled={cartItems.length > 0}
-          />
-        </div> 
-      }
+      {renderStripeButtonAndWarning()}
     </CheckoutPageContainer>
   )
 }
@@ -70,5 +81,10 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectcartItems,
   total: selectcartTotal
 });
+
+Checkout.propTypes = {
+  cartItems: PropTypes.array,
+  total: PropTypes.number.isRequired
+}
 
 export default connect(mapStateToProps,null)(Checkout);

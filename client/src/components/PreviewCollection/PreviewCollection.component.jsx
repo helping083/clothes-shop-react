@@ -5,6 +5,7 @@ import {
   TitleContainer,
   PreviewContainer
 } from './preview-collection.style';
+import PropTypes from 'prop-types';
 
 const PreviewCollection = memo(({title, items}) => {
   return (
@@ -20,5 +21,10 @@ const PreviewCollection = memo(({title, items}) => {
     </CollectionPreviewContainer>
   )
 })
+
+PreviewCollection.propTypes= {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.array
+}
 
 export default PreviewCollection;

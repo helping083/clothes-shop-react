@@ -8,6 +8,7 @@ import {
   ContentTitle,
   ContentSubtitle
 } from './MenuItem.styles';
+import PropTypes from 'prop-types';
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
   <MenuItemContainer
@@ -24,5 +25,18 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
     </ContentContainer>
   </MenuItemContainer>
 );
+
+MenuItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  size: PropTypes.string,
+  history: PropTypes.object,
+  linkUrl: PropTypes.string.isRequired,
+  match: PropTypes.object
+}
+
+MenuItem.defaultProps = {
+  size: 'medium'
+}
 
 export default withRouter(MenuItem);
