@@ -4,6 +4,7 @@ import {
   FormInputContainer,
   FormInputLabel
 } from './form-input.styles';
+import PropTypes from 'prop-types';
 
 const FormInput = ({handleChange, label, ...props}) => {
 
@@ -19,6 +20,11 @@ const FormInput = ({handleChange, label, ...props}) => {
       {label && renderLabel() }
     </GroupContainer>
   )
+}
+
+FormInput.proptype = {
+  handleChange: PropTypes.func.isRequired,
+  label: PropTypes.string
 }
 
 export default FormInput;

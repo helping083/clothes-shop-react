@@ -4,6 +4,7 @@ import {
   ItemDetailsContainer,
   CartItemImage
 } from './cart-item.styles';
+import PropTypes from 'prop-types';
 
 const cartItem = ({item: {imageUrl, price, name, quantity}}) => {
   return (
@@ -15,6 +16,10 @@ const cartItem = ({item: {imageUrl, price, name, quantity}}) => {
       </ItemDetailsContainer>
     </CartItemContainer>
   )
+}
+
+cartItem.propTypes = {
+  item: PropTypes.object.isRequired
 }
 
 export default cartItem;

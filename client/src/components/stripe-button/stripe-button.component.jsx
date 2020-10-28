@@ -1,9 +1,10 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import {STRIPE_PUBLISH_KEY} from '../../config/stripe.config';
 
-const stripeCheckoutButton = ({price}) => {
+const StripeCheckoutButton = ({price}) => {
   const priceForStripe = price * 100;
 
   const onToken = token => {
@@ -42,4 +43,8 @@ const stripeCheckoutButton = ({price}) => {
   )
 }
 
-export default stripeCheckoutButton;
+StripeCheckoutButton.propTypes = {
+  price: PropTypes.number.isRequired
+}
+
+export default StripeCheckoutButton;

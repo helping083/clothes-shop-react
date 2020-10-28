@@ -3,7 +3,9 @@ import FormInput from '../FormInput/';
 import Button from '../button/';
 import {connect} from 'react-redux';
 import { signUpStart } from '../../store/user/user.actions';
-import {SignUpContainer, SignUpTitle} from './sign-up.styles'
+import {SignUpContainer, SignUpTitle} from './sign-up.styles';
+import PropTypes from 'prop-types';
+
 const SignUp = ({signUpStart}) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
@@ -80,5 +82,9 @@ const SignUp = ({signUpStart}) => {
 const mapDispatchToProps = dispatch => ({
   signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials))
 })
+
+SignUp.propTypes = {
+  signUpStart: PropTypes.func.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(SignUp);

@@ -7,6 +7,7 @@ import {
 } from './signIn.styles';
 import Button from '../button/';
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
 // todo: make an auth factory for different firebase auth actions
 import {googleSignInStart, emailSignInStart} from '../../store/user/user.actions';
 
@@ -69,5 +70,10 @@ const mapDispatchToProps = dispatch => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
   emailSignInStart: (email, password) => dispatch(emailSignInStart(email, password))
 })
+
+SignInForm.propTypes = {
+  googleSignInStart: PropTypes.func.isRequired,
+  emailSignInStart: PropTypes.func.isRequired
+}
 
 export default connect(null, mapDispatchToProps)(SignInForm);

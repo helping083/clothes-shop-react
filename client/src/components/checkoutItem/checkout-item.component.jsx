@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import { connect } from 'react-redux';
-
+import PropTypes from 'prop-types';
 import {
   clearItemFromCart,
   addItemTocart,
@@ -41,6 +41,13 @@ const mapDispatchToProps = dispatch => ({
   addItem: item => dispatch(addItemTocart(item)),
   removeItem: item => dispatch(removeItem(item))
 });
+
+CheckoutItem.propTypes = {
+  cartItem: PropTypes.object.isRequired,
+  clearItem: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+  removeItem: PropTypes.func.isRequired,
+}
 
 const memoizedCheckoutItem = memo(CheckoutItem)
 

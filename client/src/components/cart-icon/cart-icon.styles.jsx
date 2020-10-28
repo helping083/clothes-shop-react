@@ -1,4 +1,3 @@
-
 import styled from 'styled-components';
 
 import { ReactComponent as ShoppingIconSVG } from '../../global/shopping-bag.svg';

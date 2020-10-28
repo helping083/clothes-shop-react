@@ -9,6 +9,7 @@ import {selectCurrentUser} from '../../store/user/user.selectors';
 import {signOutStart} from '../../store/user/user.actions';
 import {BurgerToggle} from '../burger-menu/';
 import BurgerMenu from '../burger-menu/';
+import PropTypes from 'prop-types';
 import {
   HeaderContainer, 
   LogoContainer, 
@@ -18,6 +19,7 @@ import {
 } from './header.styles';
 
 const Header = ({currentUser, hidden, signOutStart}) => {
+  console.log('currentUser', currentUser)
   const [openedBurger, setOpenedBurger] = useState(false);
   
   const handleToggleBurgerMenuState = () => {
@@ -78,5 +80,16 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = dispatch => ({
   signOutStart: () => dispatch(signOutStart())
 })
+
+Header.propTypes = {
+  signOutStart: PropTypes.func.isRequired,
+  currentUser: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.object]),
+  hidden: PropTypes.bool.isRequired
+}
+
+Header.defaultProps = {
+  hidden: false,
+  currentUser: null
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header)
